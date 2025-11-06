@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Banco</title>
+</head>
+<body>
+	<h1>Bienvenido al Banco</h1>
+
+	<h3>Estado del cajero:</h3>
+	<p>Total disponible: <span th:text="${dineroTotal}"></span> pesos</p>
+
+	<table border="1">
+		<tr><th>Billete</th><th>Cantidad</th></tr>
+		<tr th:each="billete : ${billetes}">
+			<td th:text="${billete.key}"></td>
+			<td th:text="${billete.value}"></td>
+		</tr>
+	</table>
+
+	<a href="/login">Iniciar Sesión</a>
+</body>
+</html>

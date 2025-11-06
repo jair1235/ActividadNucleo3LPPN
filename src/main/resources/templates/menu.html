@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Menú del Cajero</title>
+</head>
+<body>
+    <h2>Bienvenido, <span th:text="${cliente.nombre}"></span></h2>
+    <p>Documento: <span th:text="${cliente.documento}"></span></p>
+    <p>Saldo actual: $<span th:text="${cliente.saldo}"></span></p>
+
+    <hr>
+
+    <h3>Operaciones disponibles</h3>
+
+    <section>
+        <h4>Retirar dinero</h4>
+        <form th:action="@{/retirar}" method="post">
+            <label>Monto a retirar:</label>
+            <input type="number" name="monto" min="1000" step="1000" required>
+            <button type="submit">Retirar</button>
+        </form>
+    </section>
+
+    <hr>
+
+    <section>
+        <h4>Consignar dinero</h4>
+        <form th:action="@{/consignar}" method="post">
+            <label>Monto a consignar:</label>
+            <input type="number" name="monto" min="1000" step="1000" required>
+            <button type="submit">Consignar</button>
+        </form>
+    </section>
+
+    <hr>
+
+    <section>
+        <h4>Transferir dinero</h4>
+        <form th:action="@{/transferir}" method="post">
+            <label>Documento del destinatario:</label>
+            <input type="number" name="destinatario" required>
+            <br>
+            <label>Monto a transferir:</label>
+            <input type="number" name="monto" min="1000" step="1000" required>
+            <button type="submit">Transferir</button>
+        </form>
+    </section>
+
+    <hr>
+
+    <a href="/logout">Cerrar sesión</a>
+
+    <div th:if="${mensaje}">
+        <p th:text="${mensaje}" style="color:green;"></p>
+    </div>
+
+    <div th:if="${error}">
+        <p th:text="${error}" style="color:red;"></p>
+    </div>
+</body>
+</html>
